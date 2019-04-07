@@ -95,7 +95,7 @@ def most_errors():
 	errors = c.fetchall()
 	whitespace = ' '
 	conn.close()
-	print('The days with more than one percent of requests lead to erros:')
+	print('The days with more than one percent of requests lead to errors:')
 	for row in errors:
 		dates = u'\u2022' + ' %s -- %s views' % row
 		print('  ' + whitespace.join(dates.split()))
