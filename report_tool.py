@@ -65,11 +65,9 @@ def most_errors():
             WHERE percent > 1.0;
         """)
     most_errors = c.fetchall()
-    # whitespace = ' '
     conn.close()
     print('The days with more than one percent of requests lead to errors:')
     for row in most_errors:
-        # dates = u'\u2022' + ' %s -- %s views' % row
         print('  ' + u'\u2022' + ' %s -- %s views' % row)
     print('\n')
 
