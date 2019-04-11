@@ -64,7 +64,8 @@ def top_articles():
     top_3 = sql_query(request_articles)
     print('Most popular three articles of all time:')
     for row in top_3:
-        print('  ' + u'\u2022' + ' "%s" -- %s views' % row)
+        print(('  ' + u'\u2022' + ' "{}" -- {} views').format(row[0],row[1]))
+        # print(row)
     print('\n')
 
 
@@ -73,7 +74,7 @@ def top_authors():
     most_popular = sql_query(request_authors)
     print('Most popular article authors of all time:')
     for row in most_popular:
-        print('  ' + u'\u2022' + ' %s -- %s views' % row)
+        print(('  ' + u'\u2022' + ' {} -- {} views').format(row[0],row[1]))
     print('\n')
 
 
@@ -82,7 +83,7 @@ def most_errors():
     most_errors = sql_query(request_errors)
     print('The days with more than one percent of requests lead to errors:')
     for row in most_errors:
-        print('  ' + u'\u2022' + ' %s -- %s views' % row)
+        print(('  ' + u'\u2022' + ' {} -- {} views').format(row[0],row[1]))
     print('\n')
 
 
