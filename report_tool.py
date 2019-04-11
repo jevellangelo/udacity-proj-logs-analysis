@@ -44,12 +44,19 @@ request_errors = """SELECT to_char(date, 'FMMonth DD, YYYY'), percent
 
 # Query data from database, open and close the connection
 def sql_query(sql_request):
-    conn = psycopg2.connect(database=DBNAME)
-    c = conn.cursor()
-    c.execute(sql_request)
-    results = c.fetchall()
-    conn.close()
-    return results
+    try:
+        conn = psycopg2.connect(database=DBNAME)
+        c = conn.cursor()
+        # Print PostgreSQL Connection properties for debugging
+        # print(conn.get_dsn_parameters(),"\n")
+        c.execute(sql_request)
+        results = c.fetchall()
+    except psycopg2.DatabaseError, e:
+        print("Error connecting to {} database.\nError: {}".format(DBNAME, e))
+    finally:
+        if conn is not None:
+            conn.close()
+            return results
 
 
 def top_articles():
